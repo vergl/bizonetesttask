@@ -44,9 +44,9 @@ public class StringToMapTransformer {
      * @param stringToTransform - строка для преобразования.
      */
     private void transformStringToMap(String stringToTransform) {
-        List<String> wordsArray = Arrays.asList(stringToTransform.split(" "));
+        List<String> wordsList = Arrays.asList(stringToTransform.split(" "));
 
-        wordsArray.stream()
+        wordsList.stream()
                 .distinct()
                 .collect(Collectors.groupingBy(word -> word.substring(0, 1)))
                 .forEach((key, value) -> {
