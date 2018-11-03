@@ -19,8 +19,10 @@ public class StringToMapTransformerTest {
     public void shouldIgnoreExtraSpaces() {
         String inputString = "           сапог сарай            арбуз болт бокс биржа              ";
         String expected = "{б=[биржа, бокс, болт], с=[сапог, сарай]}";
+
         StringToMapTransformer transformer = new StringToMapTransformer();
         Map<String, List<String>> result = transformer.transform(inputString);
+
         assertEquals(expected, result.toString());
     }
 
@@ -28,8 +30,10 @@ public class StringToMapTransformerTest {
     public void shouldBeCaseInsensitive() {
         String inputString = "СаПоГ саРАЙ арбуз БОЛТ Бокс бИРЖА";
         String expected = "{б=[биржа, бокс, болт], с=[сапог, сарай]}";
+
         StringToMapTransformer transformer = new StringToMapTransformer();
         Map<String, List<String>> result = transformer.transform(inputString);
+
         assertEquals(expected, result.toString());
     }
 
@@ -38,8 +42,10 @@ public class StringToMapTransformerTest {
     public void shouldIgnoreDigitsAndSymbols() {
         String inputString = "сапог +++ ' ' 58935735 сарай ||||| арбуз _ ~@$ $@$ 2323болт бокс биржа";
         String expected = "{б=[биржа, бокс, болт], с=[сапог, сарай]}";
+
         StringToMapTransformer transformer = new StringToMapTransformer();
         Map<String, List<String>> result = transformer.transform(inputString);
+
         assertEquals(expected, result.toString());
     }
 
@@ -48,8 +54,10 @@ public class StringToMapTransformerTest {
     public void shouldWorkBothWithCyrillicAndLatinCharacters() {
         String inputString = "сапог сарай арбуз болт бокс биржа table duck deer";
         String expected = "{d=[deer, duck], б=[биржа, бокс, болт], с=[сапог, сарай]}";
+
         StringToMapTransformer transformer = new StringToMapTransformer();
         Map<String, List<String>> result = transformer.transform(inputString);
+
         assertEquals(expected, result.toString());
     }
 }
