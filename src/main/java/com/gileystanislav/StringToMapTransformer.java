@@ -34,7 +34,7 @@ public class StringToMapTransformer {
      */
     public Map<String, List<String>> transform(String inputString) {
         String preparedString = prepareString(inputString);
-        transformStringToMap(preparedString);
+        if (preparedString.length() > 0) transformStringToMap(preparedString);
         return dictionary;
     }
 
