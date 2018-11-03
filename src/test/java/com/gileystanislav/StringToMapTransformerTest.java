@@ -60,4 +60,50 @@ public class StringToMapTransformerTest {
 
         assertEquals(expected, result.toString());
     }
+
+    @Test
+    public void shouldReturnEmptyMapForEmptyString() {
+        String inputString = "";
+        String expected = "{}";
+
+        StringToMapTransformer transformer = new StringToMapTransformer();
+        Map<String, List<String>> result = transformer.transform(inputString);
+
+        assertEquals(expected, result.toString());
+    }
+
+    @Test
+    public void shouldReturnEmptyMapForSingleWord() {
+        String inputString = "word";
+        String expected = "{}";
+
+        StringToMapTransformer transformer = new StringToMapTransformer();
+        Map<String, List<String>> result = transformer.transform(inputString);
+
+        assertEquals(expected, result.toString());
+    }
+
+
+    @Test
+    public void shouldIgnoreDuplicates() {
+        String inputString = "сапог сарай арбуз болт бокс биржа биржа биржа биржа";
+        String expected = "{б=[биржа, бокс, болт], с=[сапог, сарай]}";
+
+        StringToMapTransformer transformer = new StringToMapTransformer();
+        Map<String, List<String>> result = transformer.transform(inputString);
+
+        assertEquals(expected, result.toString());
+    }
+
+
+    @Test
+    public void shouldReturnEmptyMapForSingleChar() {
+        String inputString = "с";
+        String expected = "{}";
+
+        StringToMapTransformer transformer = new StringToMapTransformer();
+        Map<String, List<String>> result = transformer.transform(inputString);
+
+        assertEquals(expected, result.toString());
+    }
 }
